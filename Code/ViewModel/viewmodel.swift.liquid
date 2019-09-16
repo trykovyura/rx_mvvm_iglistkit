@@ -19,8 +19,8 @@ class {{ module_info.name }}ViewModel: ViewModelType, Stepper {
     let dependency: Dependency
 
     required init(dependency: Dependency) {
-	self.dependency = dependency
-        let sections = Observable.just(builder.build())
+        self.dependency = dependency
+        let sections = Observable.just(dependency.builder.build())
         output = Output(sections: sections.asDriverOnErrorJustComplete())
     }
 }
