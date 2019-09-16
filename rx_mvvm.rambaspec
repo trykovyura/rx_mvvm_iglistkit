@@ -1,0 +1,24 @@
+# Template information section
+name: rx_mvvm_iglistkit
+summary: Template for Rx MVVM IGListKit module
+author: Anton Goncharov
+version: 1.0.0
+license: MIT
+
+# The declarations for code files
+code_files:
+# Assembly layer
+- {name: Assembly/Assembly.swift, path: Code/Assembly/assembly.swift.liquid}
+# Interactor layer
+- {name: Interactor/Interactor.swift, path: Code/Interactor/interactor.swift.liquid}
+# ViewModel layer
+- {name: ViewModel/ViewModel.swift, path: Code/ViewModel/viewmodel.swift.liquid}
+- {name: ViewModel/Builder.swift, path: Code/ViewModel/builder.swift.liquid}
+- {name: ViewModel/DataSection.swift, path: Code/ViewModel/dataSection.swift.liquid}
+# View layer
+- {name: View/ViewController.swift, path: Code/View/viewcontroller.swift.liquid}
+- {name: View/View.swift, path: Code/View/view.swift.liquid}
+- {name: View/SectionControllers/SectionController.swift, path: Code/View/SectionControllers/sectionController.swift.liquid}
+
+# Template dependencies
+dependencies:

@@ -1,0 +1,40 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import RxSwift
+import RxCocoa
+import RxFlow
+
+class {{ module_info.name }}ViewModel: ViewModelType, Stepper {
+
+    let steps = PublishRelay<Step>()
+    let input = Input()
+    let output: Output
+    let dependency: Dependency
+
+    required init(dependency: Dependency) {
+	self.dependency = dependency
+        Let sections = Observable.just(builder.build())
+        output = Output(sections: sections.asDriverOnErrorJustComplete())
+    }
+}
+
+extension {{ module_info.name }}ViewModel {
+
+    struct Input {}
+
+    struct Output {
+        let sections: Driver<[{{ module_info.name }}DataSection]>
+    }
+
+    struct Dependency {
+        let builder: {{ module_info.name }}BuilderType
+        let interactor: {{ module_info.name }}InteractorType
+    }
+}

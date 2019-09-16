@@ -1,0 +1,51 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import IGListKit
+
+class {{ module_info.name }}SectionController: ListBindingSectionController<ListDiffable>,
+        ListBindingSectionControllerDataSource {
+
+    override init() {
+        super.init()
+        dataSource = self
+        inset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>,
+                           viewModelsFor object: Any) -> [ListDiffable] {
+        guard let viewModel = object as? CollectionSectionViewModel else {
+            fatalError()
+        }
+        return viewModel.viewModels
+    }
+
+    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>,
+                           cellForViewModel viewModel: Any,
+                           at index: Int) -> UICollectionViewCell & ListBindable {
+        guard let viewModel = viewModel as? ViewModel else {
+            fatalError()
+        }
+        guard let cell = collectionContext?.dequeueReusableCell(of: viewModel.cellClass,
+                for: self, at: index) as? UICollectionViewCell & ListBindable else {
+            fatalError()
+        }
+        return cell
+    }
+
+    func sectionController(_ sectionController: ListBindingSectionController<ListDiffable>,
+                           sizeForViewModel viewModel: Any,
+                           at index: Int) -> CGSize {
+        guard let viewModel = viewModel as? ViewModel else {
+            return .zero
+        }
+        let width = obtainSectionWidth()
+        return viewModel.size(for: width)
+    }
+}
+
